@@ -19,6 +19,10 @@ function App() {
     }
   };
 
+  const clearFilters = () => {
+    setFilters([]);
+  }
+
   const handleDeleteFilter = (filterToDelete) => {
     setFilters(prevFilters => prevFilters.filter(filter => filter !== filterToDelete));
   };
@@ -31,7 +35,11 @@ function App() {
         <div className='bg-bgCyan relative'>
           <img className='w-full sm:hidden mb-24' src={headerMobile} alt="" />
           <img className='hidden sm:flex w-full' src={headerDesktop} alt="" />
-          <Filter filters={filters} onDeleteFilter={handleDeleteFilter} />
+          <Filter isHidden={filters.length === 0 ? true : false} 
+            filters={filters} 
+            onDeleteFilter={handleDeleteFilter}
+            clearFilter={clearFilters}
+            />
         </div>
         <div className='bg-lightCyan h-32 flex flex-col gap-10 pt-10'>
           {
